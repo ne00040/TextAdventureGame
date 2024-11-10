@@ -97,8 +97,8 @@ public class Player {
 	 *
 	 * @param action the action to perform
 	 */
-	public void takeAction(String action) {
-		System.out.println("Performing action: " + action);
+	public void takeAction(Action action) {
+		action.execute(this);
 	}
 
 	/**
@@ -121,10 +121,5 @@ public class Player {
 	 */
 	public void addItem(String item) {
 		this.inventory.add(item);
-	}
-
-	@Override
-	public String toString() {
-		return "Player Status: " + this.status + "\nHealth: " + this.health + "\nInventory: " + this.inventory;
 	}
 }

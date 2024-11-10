@@ -11,10 +11,11 @@ import java.util.List;
 public class Location {
 	private String name;
 	private String description;
+	private Hazard hazard;
 	private boolean isHazard;
 	private boolean isGoal;
 	private List<Location> adjacentLocations;
-	private List<String> actions;
+	private List<Action> actions;
 
 	/**
 	 * Instantiates a new Location.
@@ -22,6 +23,7 @@ public class Location {
 	 * @param name              the name of the location
 	 * @param description       the description of the location
 	 * @param isHazard          indicates if the location is hazardous
+	 * @param hazard            the hazard if there is a hazard
 	 * @param isGoal            indicates if the location is the goal
 	 * @param adjacentLocations a list of locations adjacent to this location
 	 * @param actions           a list of actions that can be performed in this
@@ -29,8 +31,8 @@ public class Location {
 	 * @throws IllegalArgumentException if name or description is null or blank, or
 	 *                                  if adjacentLocations or actions is null
 	 */
-	public Location(String name, String description, boolean isHazard, boolean isGoal, List<Location> adjacentLocations,
-			List<String> actions) {
+	public Location(String name, String description, boolean isHazard, Hazard hazard, boolean isGoal, List<Location> adjacentLocations,
+			List<Action> actions) {
 		if (name == null || name.trim().isEmpty()) {
 			throw new IllegalArgumentException("Name cannot be null or blank");
 		}
@@ -44,6 +46,7 @@ public class Location {
 			throw new IllegalArgumentException("Actions cannot be null");
 		}
 		this.name = name;
+		this.hazard = hazard;
 		this.description = description;
 		this.isHazard = isHazard;
 		this.isGoal = isGoal;
@@ -58,6 +61,15 @@ public class Location {
 	 */
 	public String getName() {
 		return this.name;
+	}
+	
+	/**
+	 * Gets the hazard in the location.
+	 *
+	 * @return the hazard in the location
+	 */
+	public Hazard getHazard() {
+		return this.hazard;
 	}
 
 	/**
@@ -101,21 +113,7 @@ public class Location {
 	 *
 	 * @return the list of available actions
 	 */
-	public List<String> getAvailableActions() {
+	public List<Action> getAvailableActions() {
 		return this.actions;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder adjacentNames = new StringBuilder();
-		for (Location loc : this.adjacentLocations) {
-			adjacentNames.append(loc.getName()).append(", ");
-		}
-		if (adjacentNames.length() > 0) {
-			adjacentNames.setLength(adjacentNames.length() - 2);
-		}
-		return "Location: " + this.name + "\nDescription: " + this.description + "\nHazard: " + this.isHazard
-				+ "\nGoal: " + this.isGoal + "\nAdjacent Locations: " + adjacentNames + "\nActions: "
-				+ this.actions;
 	}
 }
