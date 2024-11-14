@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="458.0" minWidth="600.0" prefHeight="642.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.text_adventure_game.view.MainWindow">
+<AnchorPane fx:id="pane" minHeight="458.0" minWidth="569.0" prefHeight="556.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.text_adventure_game.view.MainWindow">
    <children>
-
+      <ComboBox fx:id="actionComboBox" layoutX="27.0" layoutY="503.0" opacity="0.28" prefWidth="150.0" promptText="Select Action" />
+      <Button layoutX="208.0" layoutY="503.0" mnemonicParsing="false" onAction="#onTakeAction" text="Take Action" />
+      <TextArea fx:id="currentLocationArea" layoutX="28.0" layoutY="164.0" prefHeight="144.0" prefWidth="286.0" />
+      <TextArea fx:id="playerStatusArea" layoutX="27.0" layoutY="338.0" prefHeight="144.0" prefWidth="286.0" />
+      <TextArea fx:id="availableActionArea" layoutX="376.0" layoutY="165.0" prefHeight="325.0" prefWidth="227.0" />
+      <Label layoutX="95.0" layoutY="146.0" text="Current Location Description" />
+      <Label layoutX="131.0" layoutY="319.0" prefHeight="18.0" prefWidth="78.0" text="Player Status" />
+      <Label layoutX="244.0" layoutY="29.0" prefHeight="18.0" prefWidth="140.0" text="Game Real World Activity" />
+      <Label layoutX="415.0" layoutY="146.0" text="Available Action Description" />
+      <TextArea layoutX="27.0" layoutY="48.0" prefHeight="90.0" prefWidth="574.0" />
    </children>
 </AnchorPane>

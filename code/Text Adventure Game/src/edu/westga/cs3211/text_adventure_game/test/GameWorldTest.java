@@ -24,7 +24,7 @@ public class GameWorldTest {
 	@BeforeEach
 	public void setUp() {
 		player = new Player(100, new ArrayList<>());
-		startLocation = new Location("Forest", "A spooky forest.", false, null, false, new ArrayList<>(),
+		startLocation = new Location("Forest", "A spooky forest.", null, false, new ArrayList<>(),
 				new ArrayList<>());
 		gameWorld = new GameWorld(player, startLocation);
 	}
@@ -54,7 +54,7 @@ public class GameWorldTest {
 	@Test
 	@DisplayName("Moving to a new adjacent location")
 	public void testMoveToLocation() {
-		Location cave = new Location("Cave", "A dark cave.", false, null, false, new ArrayList<>(), new ArrayList<>());
+		Location cave = new Location("Cave", "A dark cave.", null, false, new ArrayList<>(), new ArrayList<>());
 		startLocation.getAdjacentLocations().add(cave);
 
 		gameWorld.moveToLocation(cave);
@@ -64,7 +64,7 @@ public class GameWorldTest {
 	@Test
 	@DisplayName("Moving to an invalid location")
 	public void testMoveToInvalidLocation() {
-		Location cave = new Location("Cave", "A dark cave.", false, null, false, new ArrayList<>(), new ArrayList<>());
+		Location cave = new Location("Cave", "A dark cave.", null, false, new ArrayList<>(), new ArrayList<>());
 		assertThrows(IllegalArgumentException.class, () -> {
 			gameWorld.moveToLocation(cave);
 		});
@@ -81,7 +81,7 @@ public class GameWorldTest {
 	@DisplayName("Applying hazard to player at start location")
 	public void testHazardAtStartLocation() {
 		Hazard hazard = new Hazard("Pitfall", 20);
-		startLocation = new Location("Forest", "A spooky forest.", true, hazard, false, new ArrayList<>(),
+		startLocation = new Location("Forest", "A spooky forest.", hazard, false, new ArrayList<>(),
 				new ArrayList<>());
 		gameWorld = new GameWorld(player, startLocation);
 
@@ -92,7 +92,7 @@ public class GameWorldTest {
 	@Test
 	@DisplayName("No hazard at start location")
 	public void testNoHazardAtStartLocation() {
-		startLocation = new Location("Forest", "A spooky forest.", true, null, false, new ArrayList<>(),
+		startLocation = new Location("Forest", "A spooky forest.", null, false, new ArrayList<>(),
 				new ArrayList<>());
 		gameWorld = new GameWorld(player, startLocation);
 		assertEquals(100, player.getHealth());
@@ -103,7 +103,7 @@ public class GameWorldTest {
 	@DisplayName("Applying hazard to player at new location")
 	public void testHazardAtNewLocation() {
 		Hazard hazard = new Hazard("Pitfall", 20);
-		Location hazardousLocation = new Location("Cave", "A dark cave.", true, hazard, false, new ArrayList<>(),
+		Location hazardousLocation = new Location("Cave", "A dark cave.", hazard, false, new ArrayList<>(),
 				new ArrayList<>());
 		startLocation.getAdjacentLocations().add(hazardousLocation);
 
@@ -124,7 +124,7 @@ public class GameWorldTest {
 	public void testGetAvailableActions() {
 		List<Action> actions = new ArrayList<>();
 		actions.add(new Action("Look", "Look around the area"));
-		startLocation = new Location("Forest", "A spooky forest.", false, null, false, new ArrayList<>(), actions);
+		startLocation = new Location("Forest", "A spooky forest.", null, false, new ArrayList<>(), actions);
 		gameWorld = new GameWorld(player, startLocation);
 
 		List<Action> availableActions = gameWorld.getAvailableActions();

@@ -12,7 +12,6 @@ public class Location {
 	private String name;
 	private String description;
 	private Hazard hazard;
-	private boolean isHazard;
 	private boolean isGoal;
 	private List<Location> adjacentLocations;
 	private List<Action> actions;
@@ -22,7 +21,6 @@ public class Location {
 	 *
 	 * @param name              the name of the location
 	 * @param description       the description of the location
-	 * @param isHazard          indicates if the location is hazardous
 	 * @param hazard            the hazard if there is a hazard
 	 * @param isGoal            indicates if the location is the goal
 	 * @param adjacentLocations a list of locations adjacent to this location
@@ -31,7 +29,7 @@ public class Location {
 	 * @throws IllegalArgumentException if name or description is null or blank, or
 	 *                                  if adjacentLocations or actions is null
 	 */
-	public Location(String name, String description, boolean isHazard, Hazard hazard, boolean isGoal, List<Location> adjacentLocations,
+	public Location(String name, String description, Hazard hazard, boolean isGoal, List<Location> adjacentLocations,
 			List<Action> actions) {
 		if (name == null || name.trim().isEmpty()) {
 			throw new IllegalArgumentException("Name cannot be null or blank");
@@ -48,7 +46,6 @@ public class Location {
 		this.name = name;
 		this.hazard = hazard;
 		this.description = description;
-		this.isHazard = isHazard;
 		this.isGoal = isGoal;
 		this.adjacentLocations = adjacentLocations;
 		this.actions = actions;
@@ -86,8 +83,8 @@ public class Location {
 	 *
 	 * @return true if the location is hazardous, false otherwise
 	 */
-	public boolean isHazard() {
-		return this.isHazard;
+	public boolean hasHazard() {
+		return this.hazard != null;
 	}
 
 	/**

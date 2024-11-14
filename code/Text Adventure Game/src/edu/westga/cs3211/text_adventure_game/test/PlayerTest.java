@@ -112,7 +112,7 @@ public class PlayerTest {
     public void testMoveTo() {
         Player player = new Player(100, initialInventory);
         Hazard hazard = new Hazard("pitfall", 20);
-        Location newLocation = new Location("Cave", "A dark cave.", false, hazard, false, new ArrayList<>(), new ArrayList<>());
+        Location newLocation = new Location("Cave", "A dark cave.", hazard, false, new ArrayList<>(), new ArrayList<>());
 
         player.moveTo(newLocation);
     }

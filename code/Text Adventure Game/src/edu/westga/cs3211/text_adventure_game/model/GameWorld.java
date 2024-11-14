@@ -33,7 +33,7 @@ public class GameWorld {
 	}
 
 	private void applyHazardIfPresent(Location location) {
-		if (location.isHazard() && location.getHazard() != null) {
+		if (location.hasHazard() && location.getHazard() != null) {
 			location.getHazard().applyTo(this.player);
 		}
 	}

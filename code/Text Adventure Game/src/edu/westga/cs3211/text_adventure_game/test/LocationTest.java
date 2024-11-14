@@ -31,11 +31,11 @@ public class LocationTest {
 
     @Test
     public void testLocationInitialization() {
-        Location location = new Location("Forest", "A spooky forest.", false, null, false, adjacentLocations, actions);
+        Location location = new Location("Forest", "A spooky forest.", null, false, adjacentLocations, actions);
 
         assertEquals("Forest", location.getName());
         assertEquals("A spooky forest.", location.getDescription());
-        assertFalse(location.isHazard());
+        assertFalse(location.hasHazard());
         assertNull(location.getHazard());
         assertFalse(location.isGoal());
         assertEquals(adjacentLocations, location.getAdjacentLocations());
@@ -47,7 +47,7 @@ public class LocationTest {
     @DisplayName("Name cannot be null or blank")
     public void testNameCannotBeNullOrBlank(String name) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Location(name, "Description", false, null, false, adjacentLocations, actions);
+            new Location(name, "Description", null, false, adjacentLocations, actions);
         });
     }
 
@@ -56,7 +56,7 @@ public class LocationTest {
     @DisplayName("Description cannot be null or blank")
     public void testDescriptionCannotBeNullOrBlank(String description) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Location("Name", description, false, null, false, adjacentLocations, actions);
+            new Location("Name", description, null, false, adjacentLocations, actions);
         });
     }
 
@@ -64,7 +64,7 @@ public class LocationTest {
     @DisplayName("Adjacent locations cannot be null")
     public void testAdjacentLocationsCannotBeNull() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Location("Name", "Description", false, null, false, null, actions);
+            new Location("Name", "Description", null, false, null, actions);
         });
     }
 
@@ -72,18 +72,18 @@ public class LocationTest {
     @DisplayName("Actions cannot be null")
     public void testActionsCannotBeNull() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Location("Name", "Description", false, null, false, adjacentLocations, null);
+            new Location("Name", "Description", null, false, adjacentLocations, null);
         });
     }
 
     @Test
     @DisplayName("Location with hazard")
     public void testLocationWithHazard() {
-        Location location = new Location("Forest", "A spooky forest.", true, hazard, false, adjacentLocations, actions);
+        Location location = new Location("Forest", "A spooky forest.", hazard, false, adjacentLocations, actions);
 
         assertEquals("Forest", location.getName());
         assertEquals("A spooky forest.", location.getDescription());
-        assertTrue(location.isHazard());
+        assertTrue(location.hasHazard());
         assertNotNull(location.getHazard());
         assertEquals(hazard, location.getHazard());
         assertFalse(location.isGoal());
