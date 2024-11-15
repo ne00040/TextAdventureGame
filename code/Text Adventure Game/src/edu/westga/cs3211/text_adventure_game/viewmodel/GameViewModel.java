@@ -62,22 +62,28 @@ public class GameViewModel {
 	 * corresponding properties that are bound to the UI.
 	 */
 	public void updateUI() {
-		String locationDescriptionAndHazard = this.gameWorld.getLocationDescription() + "\n"
-				+ this.gameWorld.getHazard();
-		this.currentLocationDescription.set(locationDescriptionAndHazard);
+		StringBuilder locationDescriptionBuilder = new StringBuilder(this.gameWorld.getLocationDescription());
 
-		String playerStatusText = this.gameWorld.getPlayerStatus();
-		this.playerStatus.set(playerStatusText);
+	    String hazardInfo = this.gameWorld.getHazard();
+	    if (hazardInfo != null && !hazardInfo.trim().isEmpty()) {
+	        locationDescriptionBuilder.append("\n").append(hazardInfo);
+	    } else {
+	    	locationDescriptionBuilder.append("\n").append("No hazard");
+	    }
+	    this.currentLocationDescription.set(locationDescriptionBuilder.toString());
 
-		this.availableActions.setAll(this.gameWorld.getAvailableActions());
+	    String playerStatusText = this.gameWorld.getPlayerStatus();
+	    this.playerStatus.set(playerStatusText);
 
-		if (!this.availableActions.isEmpty()) {
-			StringBuilder sb = new StringBuilder();
-			for (Action action : this.availableActions) {
-				sb.append(action.getName()).append(" - ").append(action.getDescription()).append("\n");
-			}
-			this.availableActionDescription.set(sb.toString());
-		}
+	    this.availableActions.setAll(this.gameWorld.getAvailableActions());
+
+	    if (!this.availableActions.isEmpty()) {
+	        StringBuilder sb = new StringBuilder();
+	        for (Action action : this.availableActions) {
+	            sb.append(action.getName()).append(" - ").append(action.getDescription()).append("\n");
+	        }
+	        this.availableActionDescription.set(sb.toString());
+	    }
 
 	}
 
@@ -107,7 +113,7 @@ public class GameViewModel {
 	 */
 	public void moveLocations(Action action) {
 		if ("move".equalsIgnoreCase(action.getName())) {
-			Random random = new Random(0);
+			Random random = new Random();
 			List<Location> adjacentLocations = this.gameWorld.getCurrentLocation().getAdjacentLocations();
 
 			if (!adjacentLocations.isEmpty()) {
