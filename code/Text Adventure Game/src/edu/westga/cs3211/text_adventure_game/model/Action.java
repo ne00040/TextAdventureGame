@@ -28,7 +28,7 @@ public class Action {
 		this.name = name;
 		this.description = description;
 	}
-	
+
 	/**
 	 * Gets the name of the action.
 	 *
@@ -55,5 +55,10 @@ public class Action {
 	 */
 	public String execute(Player player) {
 		return "You performed: " + this.name;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
 	}
 }

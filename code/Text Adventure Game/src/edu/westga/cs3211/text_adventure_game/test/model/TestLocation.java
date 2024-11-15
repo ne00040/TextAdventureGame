@@ -29,31 +29,31 @@ class TestLocation {
 	@Test
 	void testConstructorInvalidName() {
 		assertThrows(IllegalArgumentException.class, () -> {
-	        new Location(null, "Description", null, false, adjacentLocations, actions);
-	    });
+			new Location(null, "Description", null, false, adjacentLocations, actions);
+		});
 
-	    assertThrows(IllegalArgumentException.class, () -> {
-	        new Location("", "Description", null, false, adjacentLocations, actions);
-	    });
+		assertThrows(IllegalArgumentException.class, () -> {
+			new Location("", "Description", null, false, adjacentLocations, actions);
+		});
 
-	    assertThrows(IllegalArgumentException.class, () -> {
-	        new Location("    ", "Description", null, false, adjacentLocations, actions);
-	    });
+		assertThrows(IllegalArgumentException.class, () -> {
+			new Location("    ", "Description", null, false, adjacentLocations, actions);
+		});
 	}
 
 	@Test
 	void testConstructorInvalidDescription() {
 		assertThrows(IllegalArgumentException.class, () -> {
-	        new Location("Name", null, null, false, adjacentLocations, actions);
-	    });
+			new Location("Name", null, null, false, adjacentLocations, actions);
+		});
 
-	    assertThrows(IllegalArgumentException.class, () -> {
-	        new Location("Name", "", null, false, adjacentLocations, actions);
-	    });
+		assertThrows(IllegalArgumentException.class, () -> {
+			new Location("Name", "", null, false, adjacentLocations, actions);
+		});
 
-	    assertThrows(IllegalArgumentException.class, () -> {
-	        new Location("Name", "    ", null, false, adjacentLocations, actions);
-	    });
+		assertThrows(IllegalArgumentException.class, () -> {
+			new Location("Name", "    ", null, false, adjacentLocations, actions);
+		});
 	}
 
 	@Test

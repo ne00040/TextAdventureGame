@@ -95,7 +95,7 @@ public class LocationLoader {
 			return null;
 		}
 		String[] parts = hazardData.split(":\\s*");
-		
+
 		String hazardName = parts[0].trim();
 		int damage = 0;
 
@@ -112,17 +112,17 @@ public class LocationLoader {
 	 * @return the parsed Action
 	 */
 	private static Action parseAction(String line) {
-		 String actionText = line.substring(2).trim(); 
-	        String[] actionParts = actionText.split(": ");
-	        
-	        String actionName = actionParts[0].trim();
-	        String actionDescription = "";
-	        
-	        if (actionParts.length > 1) {
-	            actionDescription = actionParts[1].trim();
-	        }
-	        
-	        return new Action(actionName, actionDescription);
+		String actionText = line.substring(2).trim();
+		String[] actionParts = actionText.split(": ");
+
+		String actionName = actionParts[0].trim();
+		String actionDescription = "";
+
+		if (actionParts.length > 1) {
+			actionDescription = actionParts[1].trim();
+		}
+
+		return new Action(actionName, actionDescription);
 	}
 
 	/**

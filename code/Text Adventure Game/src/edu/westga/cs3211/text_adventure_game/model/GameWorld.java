@@ -126,4 +126,14 @@ public class GameWorld {
 	public boolean isGoalReached() {
 		return this.currentLocation.isGoal();
 	}
+
+	/**
+	 * Gets Hazard
+	 *
+	 * @return the name and the damage of the hazard
+	 */
+	public String getHazard() {
+		return "Hazard: " + this.currentLocation.getHazard().getName() + " Damage: "
+				+ this.currentLocation.getHazard().getDamage();
+	}
 }

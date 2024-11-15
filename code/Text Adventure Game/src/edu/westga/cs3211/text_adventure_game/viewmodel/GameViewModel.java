@@ -1,9 +1,12 @@
 package edu.westga.cs3211.text_adventure_game.viewmodel;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
 import edu.westga.cs3211.text_adventure_game.model.Action;
 import edu.westga.cs3211.text_adventure_game.model.GameWorld;
+import edu.westga.cs3211.text_adventure_game.model.Location;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -40,7 +43,7 @@ public class GameViewModel {
 	 * @throws IOException if there is an error reading the file
 	 */
 	public GameViewModel() throws IOException {
-		this.gameWorld = new GameWorld("locations.txt");
+		this.gameWorld = new GameWorld("src/location.txt");
 
 		this.currentLocationDescription = new SimpleStringProperty();
 		this.playerStatus = new SimpleStringProperty();
@@ -59,8 +62,9 @@ public class GameViewModel {
 	 * corresponding properties that are bound to the UI.
 	 */
 	public void updateUI() {
-		String locationDescription = this.gameWorld.getLocationDescription();
-		this.currentLocationDescription.set(locationDescription);
+		String locationDescriptionAndHazard = this.gameWorld.getLocationDescription() + "\n"
+				+ this.gameWorld.getHazard();
+		this.currentLocationDescription.set(locationDescriptionAndHazard);
 
 		String playerStatusText = this.gameWorld.getPlayerStatus();
 		this.playerStatus.set(playerStatusText);
@@ -68,10 +72,13 @@ public class GameViewModel {
 		this.availableActions.setAll(this.gameWorld.getAvailableActions());
 
 		if (!this.availableActions.isEmpty()) {
-			this.availableActionDescription.set(this.availableActions.get(0).getDescription());
+			StringBuilder sb = new StringBuilder();
+			for (Action action : this.availableActions) {
+				sb.append(action.getName()).append(" - ").append(action.getDescription()).append("\n");
+			}
+			this.availableActionDescription.set(sb.toString());
 		}
 
-		this.gameRealWorldActivity.set("");
 	}
 
 	/**
@@ -84,16 +91,34 @@ public class GameViewModel {
 	 * @param action the action to be performed
 	 */
 	public void takeAction(Action action) {
-		this.updateUI();
 		this.gameRealWorldActivity.set(this.gameWorld.performAction(action));
-	}
-	
-	
-	public void moveLocations(Action action) {
 		this.updateUI();
+	}
+
+	/**
+	 * Moves the player to a new location based on the specified action. This method
+	 * checks if the action name is "move" (case-insensitive), and if so, it moves
+	 * the player to the first adjacent location from the current location in the
+	 * game world.
+	 * 
+	 * 
+	 * @param action the action to be performed, which should have the name "move"
+	 *               to trigger the movement to the next adjacent location
+	 */
+	public void moveLocations(Action action) {
 		if ("move".equalsIgnoreCase(action.getName())) {
-			this.gameRealWorldActivity.set(this.gameWorld.moveToLocation(this.gameWorld.getCurrentLocation().getAdjacentLocations().get(0)));
+			Random random = new Random(0);
+			List<Location> adjacentLocations = this.gameWorld.getCurrentLocation().getAdjacentLocations();
+
+			if (!adjacentLocations.isEmpty()) {
+				int randomIndex = random.nextInt(adjacentLocations.size());
+				Location randomAdjacentLocation = adjacentLocations.get(randomIndex);
+				String info = this.gameWorld.moveToLocation(randomAdjacentLocation);
+				this.gameRealWorldActivity.set(info);
+			}
 		}
+
+		this.updateUI();
 	}
 
 	/**

@@ -15,125 +15,126 @@ import java.util.List;
 public class TestPlayer {
 
 	@Test
-    void testConstructorValid() {
-        List<String> inventory = new ArrayList<>();
-        inventory.add("Sword");
-        Player player = new Player(50, inventory);
+	void testConstructorValid() {
+		List<String> inventory = new ArrayList<>();
+		inventory.add("Sword");
+		Player player = new Player(50, inventory);
 
-        assertNotNull(player);
-        assertEquals(50, player.getHealth());
-        assertEquals(inventory, player.getInventory());
-    }
+		assertNotNull(player);
+		assertEquals(50, player.getHealth());
+		assertEquals(inventory, player.getInventory());
+	}
 
-    @Test
-    void testConstructorInvalidInventory() {
-        assertThrows(IllegalArgumentException.class, () -> new Player(50, null));
-    }
+	@Test
+	void testConstructorInvalidInventory() {
+		assertThrows(IllegalArgumentException.class, () -> new Player(50, null));
+	}
 
-    @Test
-    void testUpdateStatusHealthy() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(80, inventory); // Health > 70
+	@Test
+	void testUpdateStatusHealthy() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(80, inventory); // Health > 70
 
-        assertEquals("healthy", player.getStatus().split(",")[0].split(":")[1].trim());
-    }
+		assertEquals("healthy", player.getStatus().split(",")[0].split(":")[1].trim());
+	}
 
-    @Test
-    void testUpdateStatusWounded() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(50, inventory); // Health between 30 and 70
+	@Test
+	void testUpdateStatusWounded() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(50, inventory); // Health between 30 and 70
 
-        assertEquals("wounded", player.getStatus().split(",")[0].split(":")[1].trim());
-    }
+		assertEquals("wounded", player.getStatus().split(",")[0].split(":")[1].trim());
+	}
 
-    @Test
-    void testUpdateStatusCritical() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(20, inventory); // Health < 30
+	@Test
+	void testUpdateStatusCritical() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(20, inventory); // Health < 30
 
-        assertEquals("critical", player.getStatus().split(",")[0].split(":")[1].trim());
-    }
+		assertEquals("critical", player.getStatus().split(",")[0].split(":")[1].trim());
+	}
 
-    @Test
-    void testUpdateStatusDead() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(0, inventory); // Health <= 0
+	@Test
+	void testUpdateStatusDead() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(0, inventory); // Health <= 0
 
-        assertEquals("dead", player.getStatus().split(",")[0].split(":")[1].trim());
-    }
+		assertEquals("dead", player.getStatus().split(",")[0].split(":")[1].trim());
+	}
 
-    @Test
-    void testGetStatus() {
-        List<String> inventory = new ArrayList<>();
-        inventory.add("Sword");
-        Player player = new Player(50, inventory); // Wounded status
+	@Test
+	void testGetStatus() {
+		List<String> inventory = new ArrayList<>();
+		inventory.add("Sword");
+		Player player = new Player(50, inventory); // Wounded status
 
-        String expectedStatus = "Status: wounded, Health: 50, Inventory: [Sword]";
-        assertEquals(expectedStatus, player.getStatus());
-    }
+		String expectedStatus = "Status: wounded, Health: 50, Inventory: [Sword]";
+		assertEquals(expectedStatus, player.getStatus());
+	}
 
-    @Test
-    void testIsAliveTrue() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(50, inventory); // Health > 0
+	@Test
+	void testIsAliveTrue() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(50, inventory); // Health > 0
 
-        assertTrue(player.isAlive());
-    }
+		assertTrue(player.isAlive());
+	}
 
-    @Test
-    void testIsAliveFalse() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(0, inventory); // Health <= 0
+	@Test
+	void testIsAliveFalse() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(0, inventory); // Health <= 0
 
-        assertFalse(player.isAlive());
-    }
+		assertFalse(player.isAlive());
+	}
 
-    @Test
-    void testTakeDamage() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(50, inventory);
+	@Test
+	void testTakeDamage() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(50, inventory);
 
-        player.takeDamage(20);
-        assertEquals(30, player.getHealth());
-        assertEquals("wounded", player.getStatus().split(",")[0].split(":")[1].trim());
-    }
+		player.takeDamage(20);
+		assertEquals(30, player.getHealth());
+		assertEquals("wounded", player.getStatus().split(",")[0].split(":")[1].trim());
+	}
 
-    @Test
-    void testTakeDamageMoreThanHealth() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(10, inventory);
+	@Test
+	void testTakeDamageMoreThanHealth() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(10, inventory);
 
-        player.takeDamage(15); // Should reduce health to 0, not negative
-        assertEquals(0, player.getHealth());
-        assertEquals("dead", player.getStatus().split(",")[0].split(":")[1].trim());
-    }
+		player.takeDamage(15); // Should reduce health to 0, not negative
+		assertEquals(0, player.getHealth());
+		assertEquals("dead", player.getStatus().split(",")[0].split(":")[1].trim());
+	}
 
-    @Test
-    void testAddItem() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(50, inventory);
+	@Test
+	void testAddItem() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(50, inventory);
 
-        player.addItem("Potion");
-        assertTrue(player.getInventory().contains("Potion"));
-    }
+		player.addItem("Potion");
+		assertTrue(player.getInventory().contains("Potion"));
+	}
 
-    @Test
-    void testMoveTo() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(50, inventory);
-        Hazard hazard = new Hazard("Pitfall", 20);
-        Location location = new Location("Forest", "A spooky forest.", hazard, false, new ArrayList<>(), new ArrayList<>());
+	@Test
+	void testMoveTo() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(50, inventory);
+		Hazard hazard = new Hazard("Pitfall", 20);
+		Location location = new Location("Forest", "A spooky forest.", hazard, false, new ArrayList<>(),
+				new ArrayList<>());
 
-        player.moveTo(location);
-    }
+		player.moveTo(location);
+	}
 
-    @Test
-    void testTakeAction() {
-        List<String> inventory = new ArrayList<>();
-        Player player = new Player(50, inventory);
-        Action action = new Action("Attack", "Attack an enemy");
+	@Test
+	void testTakeAction() {
+		List<String> inventory = new ArrayList<>();
+		Player player = new Player(50, inventory);
+		Action action = new Action("Attack", "Attack an enemy");
 
-        String result = player.takeAction(action);
-        assertEquals("You performed: Attack", result);
-    }
+		String result = player.takeAction(action);
+		assertEquals("You performed: Attack", result);
+	}
 }

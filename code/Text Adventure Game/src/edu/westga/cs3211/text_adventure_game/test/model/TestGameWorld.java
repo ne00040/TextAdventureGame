@@ -104,5 +104,18 @@ class TestGameWorld {
 	void testIsGoalReached() {
 		assertTrue(gameWorld.isGoalReached());
 	}
+	
+	@Test
+	void testGetHazardWithHazard() {
+	    Location cave = locations.stream().filter(loc -> loc.getName().equals("Cave")).findFirst().orElse(null);
+	    
+	    assertNotNull(cave);
+	    
+	    String hazardInfo = gameWorld.getHazard();
+	    assertTrue(hazardInfo.contains("Hazard:"));  
+	    assertTrue(hazardInfo.contains("Damage:")); 
+	    assertTrue(hazardInfo.contains(cave.getHazard().getName()));  
+	    assertTrue(hazardInfo.contains(String.valueOf(cave.getHazard().getDamage())));  
+	}
 
 }

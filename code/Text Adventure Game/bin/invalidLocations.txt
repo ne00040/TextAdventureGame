@@ -1,0 +1,33 @@
+Location: Forest
+Description: A dark and eerie forest.
+Hazard: Poison: 5
+Goal: false
+AdjacentLocations:
+Actions: 
+- Move: Go deeper into the forest.
+- Pick
+
+Location: Village
+Description: A small peaceful village.
+Hazard: None
+Goal: false
+AdjacentLocations: Forest
+Actions:
+- Talk: Chat with the villagers.
+
+Location: Cave
+Description: A damp and dangerous cave.
+Hazard: Trap (10 damage)
+Goal: true
+AdjacentLocations: Forest
+Actions:
+- Enter
+- InvalidAction: Description missing
+
+Location: InvalidLocation
+Description: 
+Hazard: None
+Goal: false
+AdjacentLocations:
+Actions:
+- Broken: This action has no description
