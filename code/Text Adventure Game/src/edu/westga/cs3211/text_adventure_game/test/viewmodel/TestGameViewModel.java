@@ -55,6 +55,18 @@ class TestGameViewModel {
 		
 		assertFalse(currentLocation.getDescription().equalsIgnoreCase(viewModel.gameRealWorldActivityProperty().get()));
 	}
+	
+	@Test
+	void testNotMoveLocations() {
+		Action nonMoveAction = new Action("InvalidAction", "This action is not a move.");
+	    String previousActivity = viewModel.gameRealWorldActivityProperty().get();
+
+	    viewModel.moveLocations(nonMoveAction);
+
+	    assertEquals(null, viewModel.gameRealWorldActivityProperty().get());
+	    assertEquals(previousActivity, viewModel.gameRealWorldActivityProperty().get());
+		
+	}
 
 	@Test
 	void testCurrentLocationDescriptionProperty() {

@@ -67,9 +67,7 @@ public class GameViewModel {
 	    String hazardInfo = this.gameWorld.getHazard();
 	    if (hazardInfo != null && !hazardInfo.trim().isEmpty()) {
 	        locationDescriptionBuilder.append("\n").append(hazardInfo);
-	    } else {
-	    	locationDescriptionBuilder.append("\n").append("No hazard");
-	    }
+	    } 
 	    this.currentLocationDescription.set(locationDescriptionBuilder.toString());
 
 	    String playerStatusText = this.gameWorld.getPlayerStatus();
