@@ -82,6 +82,12 @@ public class GameViewModel {
 	        }
 	        this.availableActionDescription.set(sb.toString());
 	    }
+	    
+	    if (this.gameWorld.isGoalReached()) {
+            this.gameRealWorldActivity.set("Congratulations! You have reached your goal and completed the game!");
+        } else {
+            this.gameRealWorldActivity.set(""); 
+        }
 
 	}
 

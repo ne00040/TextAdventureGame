@@ -63,7 +63,7 @@ class TestGameViewModel {
 
 	    viewModel.moveLocations(nonMoveAction);
 
-	    assertEquals(null, viewModel.gameRealWorldActivityProperty().get());
+	    assertEquals("", viewModel.gameRealWorldActivityProperty().get());
 	    assertEquals(previousActivity, viewModel.gameRealWorldActivityProperty().get());
 		
 	}
