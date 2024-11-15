@@ -1,7 +1,9 @@
 package edu.westga.cs3211.text_adventure_game.view;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+
+import edu.westga.cs3211.text_adventure_game.model.Action;
+import edu.westga.cs3211.text_adventure_game.viewmodel.GameViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -17,13 +19,7 @@ import javafx.scene.layout.AnchorPane;
 public class MainWindow {
 
 	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
-
-	@FXML
-	private ComboBox<?> actionComboBox;
+	private ComboBox<Action> actionComboBox;
 
 	@FXML
 	private TextArea availableActionArea;
@@ -32,28 +28,36 @@ public class MainWindow {
 	private TextArea currentLocationArea;
 
 	@FXML
+	private TextArea gameRealWorldActivity;
+
+	@FXML
 	private AnchorPane pane;
 
 	@FXML
 	private TextArea playerStatusArea;
 
+	private GameViewModel gameViewModel;
+
 	@FXML
 	void onTakeAction(ActionEvent event) {
-
+		Action selectedAction = this.actionComboBox.getValue();
+		if (selectedAction != null) {
+			if (selectedAction.getName().equalsIgnoreCase("move")) {
+				this.gameViewModel.moveLocations(selectedAction);
+			} else {
+				this.gameViewModel.takeAction(selectedAction);
+			}
+		}
 	}
 
 	@FXML
-	void initialize() {
-		assert this.actionComboBox != null
-				: "fx:id=\"actionComboBox\" was not injected: check your FXML file 'MainWindow.fxml'.";
-		assert this.availableActionArea != null
-				: "fx:id=\"availableActionArea\" was not injected: check your FXML file 'MainWindow.fxml'.";
-		assert this.currentLocationArea != null
-				: "fx:id=\"currentLocationArea\" was not injected: check your FXML file 'MainWindow.fxml'.";
-		assert this.pane != null : "fx:id=\"pane\" was not injected: check your FXML file 'MainWindow.fxml'.";
-		assert this.playerStatusArea != null
-				: "fx:id=\"playerStatusArea\" was not injected: check your FXML file 'MainWindow.fxml'.";
+	void initialize() throws IOException {
+		this.gameViewModel = new GameViewModel();
+		this.currentLocationArea.textProperty().bind(this.gameViewModel.currentLocationDescriptionProperty());
+		this.playerStatusArea.textProperty().bind(this.gameViewModel.playerStatusProperty());
+		this.availableActionArea.textProperty().bind(this.gameViewModel.availableActionDescriptionProperty());
+		this.gameRealWorldActivity.textProperty().bind(this.gameViewModel.gameRealWorldActivityProperty());
 
+		this.actionComboBox.itemsProperty().bind(this.gameViewModel.getAvailableActions());
 	}
-
 }

@@ -51,8 +51,9 @@ public class Action {
 	 * Executes the action on the given player.
 	 *
 	 * @param player the player on whom the action is executed
+	 * @return the action that is being executed.
 	 */
-	public void execute(Player player) {
-		System.out.println("Executing action: " + this.name);
+	public String execute(Player player) {
+		return "You performed: " + this.name;
 	}
 }

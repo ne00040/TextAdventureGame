@@ -17,6 +17,6 @@
       <Label layoutX="131.0" layoutY="319.0" prefHeight="18.0" prefWidth="78.0" text="Player Status" />
       <Label layoutX="244.0" layoutY="29.0" prefHeight="18.0" prefWidth="140.0" text="Game Real World Activity" />
       <Label layoutX="415.0" layoutY="146.0" text="Available Action Description" />
-      <TextArea layoutX="27.0" layoutY="48.0" prefHeight="90.0" prefWidth="574.0" />
+      <TextArea fx:id="gameRealWorldActivity" layoutX="27.0" layoutY="48.0" prefHeight="90.0" prefWidth="574.0" />
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package edu.westga.cs3211.text_adventure_game.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,7 +60,7 @@ public class Location {
 	public String getName() {
 		return this.name;
 	}
-	
+
 	/**
 	 * Gets the hazard in the location.
 	 *
@@ -112,5 +113,46 @@ public class Location {
 	 */
 	public List<Action> getAvailableActions() {
 		return this.actions;
+	}
+
+	/**
+	 * Adds a new location to the list of adjacent locations.
+	 *
+	 * @param location the location to add as adjacent
+	 * 
+	 * @throws IllegalArgumentException if the location is null
+	 */
+	public void addAdjacentLocation(Location location) {
+		if (location == null) {
+			throw new IllegalArgumentException("Adjacent location cannot be null");
+		}
+		this.adjacentLocations.add(location);
+	}
+
+	/**
+	 * Adds a new action to the list of available actions in this location.
+	 *
+	 * @param action the action to add to this location's available actions
+	 * 
+	 * @throws IllegalArgumentException if the action is null
+	 */
+	public void addAction(Action action) {
+		if (action == null) {
+			throw new IllegalArgumentException("Action cannot be null");
+		}
+		this.actions.add(action);
+	}
+
+	/**
+	 * Returns a list of names for adjacent locations.
+	 *
+	 * @return a list of names for adjacent locations
+	 */
+	public List<String> getAdjacentLocationNames() {
+		List<String> adjacentLocationNames = new ArrayList<>();
+		for (Location location : this.adjacentLocations) {
+			adjacentLocationNames.add(location.getName());
+		}
+		return adjacentLocationNames;
 	}
 }

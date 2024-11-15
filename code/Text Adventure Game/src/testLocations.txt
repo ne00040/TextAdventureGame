@@ -1,0 +1,25 @@
+Location: Forest
+Description: A dark and eerie forest.
+Hazard: Poison: 5
+Goal: false
+AdjacentLocations: Village, Cave
+Actions:
+- Move: Go deeper into the forest.
+- Pick: Collect herbs.
+
+Location: Village
+Description: A small peaceful village.
+Hazard: None
+Goal: false
+AdjacentLocations: Forest
+Actions:
+- Talk: Chat with the villagers.
+- Trade: Exchange items.
+
+Location: Cave
+Description: A damp and dangerous cave.
+Hazard: Trap: 10
+Goal: true
+AdjacentLocations: Forest
+Actions:
+- Enter: Explore the cave.

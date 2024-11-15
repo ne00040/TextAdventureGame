@@ -1,0 +1,99 @@
+Location: Forest Clearing
+Description: A peaceful clearing surrounded by tall trees. The sound of birds chirping fills the air.
+Hazard: None
+Goal: false
+AdjacentLocations: Riverbank, Dark Cave
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Gather herbs from the ground.
+- Interact with NPC: Talk to a wandering traveler.
+
+Location: Riverbank
+Description: A gentle river flows here. The water is clear, and you can see fish swimming by.
+Hazard: Slippery Rocks: 5
+Goal: false
+AdjacentLocations: Forest Clearing, Old Bridge
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Collect a smooth river stone.
+- Use Item: Fill your canteen with fresh water.
+
+Location: Dark Cave
+Description: The cave is damp and pitch-black. You can hear strange noises echoing from within.
+Hazard: Bat Swarm: 3
+Goal: false
+AdjacentLocations: Forest Clearing, Underground Lake
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Find a sturdy stick.
+- Use Item: Light the stick as a torch to see in the dark.
+
+Location: Old Bridge
+Description: A wooden bridge that looks fragile and old. It creaks under any weight.
+Hazard: Broken Plank: 4
+Goal: false
+AdjacentLocations: Riverbank, Mountain Trail
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Find a fallen plank.
+- Use Item: Place the plank to reinforce the bridge.
+
+Location: Underground Lake
+Description: A vast, eerie lake beneath the earth. The water is dark and still.
+Hazard: Poisonous Fumes: 6
+Goal: false
+AdjacentLocations: Dark Cave, Hidden Tunnel
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Take a strange glowing stone.
+- Interact with NPC: Talk to a mysterious figure by the water’s edge.
+
+Location: Mountain Trail
+Description: A narrow trail that winds up a steep mountain. The view is breathtaking but dangerous.
+Hazard: Falling Rocks: 7
+Goal: false
+AdjacentLocations: Old Bridge, Abandoned Cabin
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Collect a piece of quartz from the path.
+- Use Item: Hold onto a sturdy root for stability.
+
+Location: Hidden Tunnel
+Description: A narrow tunnel leading into darkness, barely wide enough to fit through.
+Hazard: None
+Goal: false
+AdjacentLocations: Underground Lake, Treasure Chamber
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Take a handful of strange dust.
+- Use Item: Sprinkle the dust to reveal hidden markings.
+
+Location: Abandoned Cabin
+Description: An old wooden cabin. It looks like no one has lived here for years.
+Hazard: None
+Goal: false
+AdjacentLocations: Mountain Trail, Enchanted Forest
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Search for a useful item among the debris.
+- Use Item: Light a fire to warm up the room.
+
+Location: Enchanted Forest
+Description: A mystical forest where the trees seem to glow. There is a strange magic in the air.
+Hazard: Thorny Bushes: 2
+Goal: false
+AdjacentLocations: Abandoned Cabin, Ancient Ruins
+Actions: 
+- Move: Walk to an adjacent location.
+- Interact with NPC: Speak to a magical creature hidden in the trees.
+- Pick Item: Collect glowing berries from a bush.
+
+Location: Ancient Ruins
+Description: The ruins of an ancient civilization. Crumbling pillars and overgrown vines are everywhere.
+Hazard: Snake Pit: 20
+Goal: true
+AdjacentLocations: Enchanted Forest
+Actions: 
+- Move: Walk to an adjacent location.
+- Pick Item: Take an ancient artifact.
+- Use Item: Study the artifact for clues about its history.

@@ -87,18 +87,20 @@ public class Player {
 	 * Moves the player to a new location.
 	 *
 	 * @param newLocation the new location to move to
+	 * @return moving to new locations
 	 */
-	public void moveTo(Location newLocation) {
-		System.out.println("Moving to " + newLocation.getName());
+	public String moveTo(Location newLocation) {
+		return "Moving to " + newLocation.getName();
 	}
 
 	/**
 	 * Performs an action.
 	 *
 	 * @param action the action to perform
+	 * @return the action being taken
 	 */
-	public void takeAction(Action action) {
-		action.execute(this);
+	public String takeAction(Action action) {
+		return action.execute(this);
 	}
 
 	/**
